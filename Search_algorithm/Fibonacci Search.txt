@@ -1,0 +1,48 @@
+Fibonacci search is an efficient search algorithm based on divide and conquer principle that can find an element in the given sorted array with the help of Fibonacci series in O(log N) time complexity. This is based on Fibonacci series which is an infinite sequence of numbers denoting a pattern which is captured by the following equation:
+
+F(n+1)=F(n)+F(n-1)
+
+where F(i) is the ith number of the Fibonacci series where F(0) and F(1) are defined as 0 and 1 respectively.
+
+The first few Fibonacci numbers are:
+
+0,1,1,2,3,5,8,13....
+
+F(0) = 0
+F(1) = 1
+F(2) = F(1) + F(0) = 1 + 0 = 1
+F(3) = F(2) + F(1) = 1 + 1 = 2
+F(4) = F(3) + F(2) = 1 + 2 = 3 and so continues the series
+
+Other searches like binary search also work for the similar principle on splitting the search space to a smaller space but what makes Fibonacci search different is that it divides the array in unequal parts and operations involved in this search are addition and subtraction only which means light arithmetic operations takes place and hence reducing the work load of the computing machine.
+
+
+
+
+Algorithm
+Let k be defined as an element in F, the array of Fibonacci numbers. n = Fm is the array size. If n is not a Fibonacci number, let Fm be the smallest number in F that is greater than n.
+
+The array of Fibonacci numbers is defined where Fk+2 = Fk+1 + Fk, when k ≥ 0, F1 = 1, and F0 = 0.
+
+To test whether an item is in the list of ordered numbers, follow these steps:
+
+ 	1-Set k = m.
+	2-If k = 0, stop. There is no match; the item is not in the array.
+	3-Compare the item against element in Fk−1.
+	4-If the item matches, stop.
+	5-If the item is less than entry Fk−1, discard the elements from positions Fk−1 + 1 to n. Set k = k − 1 and return to step 2.
+	6-If the item is greater than entry Fk−1, discard the elements from positions 1 to Fk−1. Renumber the remaining elements from 1 to Fk−2, set k = k − 2, and return to step 2.
+	
+Alternative implementation (from "Sorting and Searching" by Knuth[4]):
+
+Given a table of records R1, R2, ..., RN whose keys are in increasing order K1 < K2 < ... < KN, the algorithm searches for a given argument K. Assume N+1 = Fk+1
+
+Step 1. [Initialize] i ← Fk, p ← Fk-1, q ← Fk-2 (throughout the algorithm, p and q will be consecutive Fibonacci numbers)
+
+Step 2. [Compare] If K < Ki, go to Step 3; if K > Ki go to Step 4; and if K = Ki, the algorithm terminates successfully.
+
+Step 3. [Decrease i] If q=0, the algorithm terminates unsuccessfully. Otherwise set (i, p, q) ← (p, q, p - q) (which moves p and q one position back in the Fibonacci sequence); then return to Step 2
+
+Step 4. [Increase i] If p=1, the algorithm terminates unsuccessfully. Otherwise set (i,p,q) ← (i + q, p - q, 2q - p) (which moves p and q two positions back in the Fibonacci sequence); and return to Step 2
+
+The two variants of the algorithm presented above always divide the current interval into a larger and a smaller subinterval. The original algorithm,[1] however, would divide the new interval into a smaller and a larger subinterval in Step 4. This has the advantage that the new i is closer to the old i and is more suitable for accelerating searching on magnetic tape.
